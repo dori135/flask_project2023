@@ -1,7 +1,6 @@
 import pyrebase
 import json
 
-
 class DBhandler:
     def __init__(self):
         with open('./authentication/firebase_auth.json') as f:
@@ -13,10 +12,10 @@ class DBhandler:
         item_info = {
             "seller": data['seller'],
             "addr": data['addr'],
-            "email": data['email'],
+            "money": data['money'],
             "category": data['category'],
             "status": data['status'],
-            "phone": data['phone'],
+            "intro": data['intro'],
             "img_path": img_path
         }
         self.db.child("item").child(name).set(item_info)

@@ -32,13 +32,12 @@ def reg_item_submit():
     name = request.args.get("name")
     seller = request.args.get("seller")
     addr = request.args.get("addr")
-    email = request.args.get("email")
+    money = request.args.get("money")
     category = request.args.get("category")
-    card = request.args.get("card")
     status = request.args.get("status")
-    phone = request.args.get("phone")
+    intro = request.args.get("intro")
 
-    print(name, seller, addr, email, category, card, status, phone)
+    print(name, seller, addr, money, category, card, status, intro)
     #return render_template("reg_item.html")
 
 @application.route("/submit_item_post", methods=['POST'])
@@ -53,4 +52,3 @@ def reg_item_submit_post():
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
-    

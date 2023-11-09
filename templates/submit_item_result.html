@@ -1,3 +1,6 @@
+{% extends "index.html" %}
+
+{% block section %}
 <p>
 {{data.seller}}가 판매하는 상품입니다.<br><br>
 상품명: {{data.name}} <br>
@@ -24,7 +27,9 @@
 <img src="{{img_path}}"/>
  
 <p>
-상품 설명: {{data.phone}} <br>
-상품 금액: {{data.email}}원<br>
+상품 설명: {{data.intro}} <br>
+상품 금액: {{data.money}}원<br>
 거래 지역은 {{data.addr}}입니다.
 </p>
+
+{% endblock section %}
