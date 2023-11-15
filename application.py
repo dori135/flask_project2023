@@ -11,11 +11,11 @@ DB = DBhandler()
 
 @application.route("/login")
 def login():
-    return render_template("login.html")
+    return render_template("로그인.html")
 
 @application.route("/signup")
 def signup():
-    return render_template("signup.html")
+    return render_template("회원가입.html")
 
 @application.route("/signup_post", methods=['POST'])
 def register_user():
@@ -23,23 +23,23 @@ def register_user():
     pw=request.form['pw']
     pw_hash = hashlib.sha256(pw.encode('utf-8')).hexdigest()
     if DB.insert_user(data,pw_hash):
-        return render_template("login.html") 
+        return render_template("로그인.html") 
     else:
         flash("user id already exist!")
-        return render_template("signup.html")
+        return render_template("회원가입.html")
 
 
 @application.route("/")
 def hello():
-    return render_template("index.html")
+    return render_template("상품전체조회.html")
 
 @application.route("/list")
 def view_list():
-    return render_template("list.html")
+    return render_template("상품전체조회.html")
 
-@application.route("/review")
+@application.route("/certification")
 def view_review():
-    return render_template("review.html")
+    return render_template("이화인인증.html")
 
 @application.route("/reg_items")
 def reg_item():

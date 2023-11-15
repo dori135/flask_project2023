@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width initial-scale=1.0;" />
+<link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
+{# <link href="login.css" rel="stylesheet" /> #}
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+<title>이화상점: 로그인</title>
+</head>
+<body>
+<div class="navbar">
+        <ul>
+            <li><a href="{{ url_for('login') }}">로그인</a></li>
+            <li><a href="#">회원가입</a></li>
+            <li><a href="#">판매상품</a></li>
+            <li><a href="#">이화인증</a></li>
+            <li><a href="#">마이페이지</a></li>
+            <li><a href="#">장바구니</a></li>
+        </ul>
+    </div>
+    </header>
+    <main>
+        <section>
+            <h1>이화상점</h1>
+
+            <form action="{{ url_for('login') }}" method="POST">
+                <input type="text" class="loginInput" id="id" placeholder="아이디" required style="font-size:20px;" />
+                <input type="password" class="loginInput" id="password" placeholder="패스워드" required style="font-size:20px;" />
+                <input type="submit" value="로그인" />
+            </form>
+            <a id="signUp" href="file:///C:/Users/ilove/Downloads/figma-to-html%20(1)/agreement.html">회원가입</a>
+        </section>
+    </main>
+</body>
+</html>
