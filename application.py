@@ -17,6 +17,7 @@ def login():
 def signup():
     return render_template("회원가입.html")
 
+
 @application.route("/signup_post", methods=['POST'])
 def register_user():
     data=request.form
@@ -76,6 +77,9 @@ def reg_item_submit_post():
     return render_template("submit_item_result.html", data=data, img_path="static/images/{}".format(image_file.filename))
     # return render_template("result.html", data=data, img_path="static/images/{}".format(image_file.filename))
 
+@application.route('/signup_page')
+def signup_page():
+    return render_template('회원가입.html')
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
