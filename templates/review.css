@@ -16,7 +16,7 @@
 
 .navbar li {
     display: inline-block; 
-    margin: 0 10px; 
+    margin: 0 25px; 
 }
 
 .navbar a {
@@ -92,20 +92,12 @@ hr{
 .divFormGender{
     position: relative; left: 23px;
 }
-#reviewRange{
-    width: 300px;
-    position: relative; left: 30px;
-}
-datalist{
-    display: grid;
-    grid-auto-flow: column;
-    width:341px;   
-    position: relative; left: 147px;
-}
 #reviewText{
     width: 1200px; height: 200px;
     font-size: 120%;
     position: relative; bottom: 150px; left: -130px;
+    padding: 10px;
+    border-radius: 5px;
 }
 #reviewSubmit{
     width: 400px; height: 50px;
@@ -116,4 +108,31 @@ datalist{
     background-color: #00462a;
     color: #fff;
     border-radius: 10px;
+}
+
+#myform fieldset{
+    display: inline-block;
+    direction: rtl;
+    border:0;
+    position: relative; left: 15px; top: 5px;
+}
+#myform fieldset legend{
+    text-align: right;
+}
+#myform input[type=radio]{
+    display: none;
+}
+#myform fieldset label{
+    font-size: 3em;
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+}
+#myform fieldset label:hover{
+    text-shadow: 0 0 0 rgba(12, 166, 105, 1);
+}
+#myform fieldset label:hover ~ label{
+    text-shadow: 0 0 0 rgba(12, 166, 105, 1);
+}
+#myform input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgba(12, 166, 105, 1);
 }
