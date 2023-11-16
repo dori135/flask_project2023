@@ -24,6 +24,12 @@
 
     <main>
         <section>
+            {% with mesg = get_flashed_messages() %}
+            {% if mesg != [] %}
+            <script>alert("{{ mesg[0] }}")</script>
+            {% endif %}
+            {% endwith %}
+            
             <h1>이화상점</h1>
 
             <form method="post" action="/signup_post">
