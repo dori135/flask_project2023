@@ -79,7 +79,10 @@
 </div>
 <div class="navbar">
         <ul>
-            <li><a href="#">로그인</a></li>
+			{% if session['id'] %}
+			<li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a></li> {% else %}
+			<li><a href="/login">로그인</a></li>
+			{% endif %}
             <li><a href="#">회원가입</a></li>
             <li><a href="#">판매상품</a></li>
             <li><a href="#">이화인증</a></li>

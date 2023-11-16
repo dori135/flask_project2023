@@ -11,7 +11,10 @@
     <header>
         <div class="navbar">
         <ul>
-            <li><a href="login.html">로그인</a></li>
+            {% if session['id'] %}
+            <li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a></li> {% else %}
+            <li><a href="/login">로그인</a></li>
+            {% endif %}
             <li><a href="agreement.html">회원가입</a></li>
             <li><a href="#">판매상품</a></li>
             <li><a href="ewhaCertification.html">이화인증</a></li>

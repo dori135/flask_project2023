@@ -41,6 +41,10 @@ def register_user():
         flash("user id already exist!")
         return render_template("회원가입.html")
 
+@application.route("/logout")
+def logout_user():
+    session.clear()
+    return redirect("/")
 
 @application.route("/")
 def hello():
