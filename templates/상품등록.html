@@ -37,7 +37,7 @@
 </div>
 
 <div class="divForm">
-    <form method="post">
+    <form method="post" id="myform">
         <label style="position: relative; left: 15px;">상품명</label>
         <input type="text" id="goodsTitle" name="goodsTitle" style="position: relative; left: 75px;"
         placeholder="(최대 20자 입력 가능합니다)" maxlength="20" size="20" required class="inputText">
@@ -74,15 +74,18 @@
             </select>
         <hr><br>
         <label style="position: relative; left: -5px;">상품 상태</label>
-        <input type="range" min="0" max="5" value="0" step="0.5" list="tickmarks" id="goodsRange">
-        <datalist id="tickmarks">
-            <option value="0">매우 나쁨</option>
-            <option value="1"></option>
-            <option value="2"></option>
-            <option value="3"></option>
-            <option value="4"></option>
-            <option value="5">매우 좋음</option>
-        </datalist>
+        <fieldset>
+            <input type="radio" name="reviewStar" value="5" id="rate1">
+            <label for="rate1" class="star">★</label>
+            <input type="radio" name="reviewStar" value="4" id="rate2">
+            <label for="rate2" class="star">★</label>
+            <input type="radio" name="reviewStar" value="3" id="rate3">
+            <label for="rate3" class="star">★</label>
+            <input type="radio" name="reviewStar" value="2" id="rate4">
+            <label for="rate4" class="star">★</label>
+            <input type="radio" name="reviewStar" value="1" id="rate5">
+            <label for="rate5" class="star">★</label>
+        </fieldset>
         <textarea name="goodsText" cols="50" rows="10" id="goodsText" 
         placeholder="상품 설명을 입력해주세요. (최대 500자 입력 가능합니다)" maxlength="500" required></textarea>
         <input type="submit" id="goodsSubmit" value="상품 등록">
