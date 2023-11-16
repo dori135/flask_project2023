@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width initial-scale=1.0;" />
     <link href="https://fonts.googleapis.com/css?family=Inter&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
-    <link href="ewhaCertification.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='ewhaCertification.css') }}" rel="stylesheet" />
     <title>이화상점: 이화인인증</title>
 </head>
 <body>
@@ -15,9 +15,8 @@
             <li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a></li> {% else %}
             <li><a href="/login">로그인</a></li>
             {% endif %}
-            <li><a href="agreement.html">회원가입</a></li>
-            <li><a href="#">판매상품</a></li>
-            <li><a href="ewhaCertification.html">이화인증</a></li>
+            <li><a href="/">판매상품</a></li>
+            <li><a href="/certification">이화인증</a></li>
             <li><a href="#">마이페이지</a></li>
             <li><a href="#">장바구니</a></li>
         </ul>
