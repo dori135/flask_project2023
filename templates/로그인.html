@@ -25,8 +25,8 @@
             <h1>이화상점</h1>
 
             <form action="{{ url_for('login') }}" method="POST">
-                <input type="text" class="loginInput" id="id" placeholder="아이디" required style="font-size:20px;" />
-                <input type="password" class="loginInput" id="password" placeholder="패스워드" required style="font-size:20px;" />
+                <input type="text" class="loginInput" id="id" name = "id" placeholder="아이디" required style="font-size:20px;" />
+                <input type="password" class="loginInput" id="password" name = "pw" placeholder="패스워드" required style="font-size:20px;" />
                 <input type="submit" value="로그인" />
             </form>
             <a id="signUp" href="{{ url_for('static', filename='이용약관.html') }}">회원가입</a>
