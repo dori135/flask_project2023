@@ -67,31 +67,26 @@ def reg_review():
     return render_template("reg_reviews.html")
 
 
-@application.route("/submit_item")
+@application.route("/submit_item", methods=['POST'])
 def reg_item_submit():
-    name = request.args.get("name")
-    seller = request.args.get("seller")
-    addr = request.args.get("addr")
-    email = request.args.get("email")
-    category = request.args.get("category")
-    card = request.args.get("card")
-    status = request.args.get("status")
-    phone = request.args.get("phone")
+    name = request.args.get("goodsTitle")
+    seller = request.args.get("goodsID")
+    category = request.args.get("goodsCate")
+    price = request.args.get("goodsPrice")
+    addr = request.args.get("goodsCity")
+    status = request.args.get("goodsRange")
+    description = request.args.get("goodsText")
     
-    print(name, seller, addr, email, category, card, status, phone)
+    print(name, seller, addr, category, status, description)
     #return render_template("reg_item.html")
 
 @application.route("/submit_item_post", methods=['POST'])
 def reg_item_submit_post():
-    
-    image_file=request.files["file"]
-    image_file.save("static/images/{}".format(image_file.filename))
-
-    data=request.form
-    DB.insert_item(data['name'], data, image_file.filename)
-    
-    return render_template("submit_item_result.html", data=data, img_path="static/images/{}".format(image_file.filename))
-    # return render_template("result.html", data=data, img_path="static/images/{}".format(image_file.filename))
+    data=request.form()
+    return render_template("submit_item_result.html", data=data)
+    # 여기서 데이터베이스에 데이터 삽입 로직 수행
+    # DB.insert_item(name, seller, category, price, addr, status, description)
+    # return redirect(url_for('view_list'))
 
 @application.route('/signup_page')
 def signup_page():
