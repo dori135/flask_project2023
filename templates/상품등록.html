@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="goodsAdd.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='goodsAdd.css') }}">
 </head>
 <nav>
     <ul>
@@ -12,7 +12,7 @@
         {% endif %}
         <li><a href="/">판매상품</a></li>
         <li><a href="/certification">이화인인증</a></li>
-        <li><a href="#">마이페이지</a></li>
+        <li><a href="/reg_items">마이페이지</a></li>
         <li><a href="#">장바구니</a></li>
     </ul>
 </nav>

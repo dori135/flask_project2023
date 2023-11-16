@@ -60,7 +60,7 @@ def view_review():
 
 @application.route("/reg_items")
 def reg_item():
-    return render_template("reg_items.html")
+    return render_template("상품등록.html")
 
 @application.route("/reg_reviews")
 def reg_review():
