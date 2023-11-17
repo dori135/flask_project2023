@@ -9,18 +9,25 @@
 </head>
 <body>
     <header>
-        <div class="navbar">
-        <ul>
-            {% if session['id'] %}
-            <li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a></li> {% else %}
-            <li><a href="/login">로그인</a></li>
-            {% endif %}
-            <li><a href="agreement.html">회원가입</a></li>
-            <li><a href="/certification">이화인증</a></li>
-            <li><a href="/reg_items">마이페이지</a></li>
-            <li><a href="#">장바구니</a></li>
-        </ul>
-    </div>
+        <nav class="navbar">
+            <div class="navbar_logo">
+                <a href="">
+                <i class="fa-brands fa-pagelines"></i>
+                <p>EWHA STORE</p>
+                </a>
+            </div>
+
+            <ul class="navbar_menu">
+                <li ><a href="/login">로그인</a></li>
+                <li><a href="/certification">이화인증</a></li>
+                <li><a href="/reg_items">마이페이지</a></li>
+                <li><a href="">장바구니</a></li>
+             </ul>
+
+             <div class="navbar_logout">
+                <a href="/logout"><b>{{session['id']}}님&nbsp;&nbsp;</b>로그아웃</a>
+             </div>
+        </nav>
     </header>
 
     <main>
