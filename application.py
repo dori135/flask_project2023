@@ -82,8 +82,12 @@ def reg_item_submit():
 
 @application.route("/submit_item_post", methods=['POST'])
 def reg_item_submit_post():
-    data=request.form()
-    return render_template("submit_item_result.html", data=data)
+    
+    image_file=request.files["file"]
+    image_file.save("static/images/{}".format(image_file.filename))
+
+    data=request.form
+    return render_template("submit_item_result.html", data=data, img_path="static/images/{}".format(image_file.filename))
     # 여기서 데이터베이스에 데이터 삽입 로직 수행
     # DB.insert_item(name, seller, category, price, addr, status, description)
     # return redirect(url_for('view_list'))

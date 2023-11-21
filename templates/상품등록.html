@@ -17,7 +17,7 @@
     </ul>
 </div>
 <div class="divImg">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" enctype="multipart/form-data" action="/submit_item_post">
         <div class="button">
             <label class="imgLabel" for="chooseFile">
                 <div class="formImg">
@@ -48,7 +48,7 @@
             placeholder="(최대 20자 입력 가능합니다)" maxlength="20" size="20" required class="inputText">
         </div>
         <hr><br>
-        <label for :"category" style="position: relative; left: 5px;">카테고리</label>
+        <label for ="category" style="position: relative; left: 5px;">카테고리</label>
         <select id="goodsCate" class="inputSelect">
             <option value="가전">가전</option>
             <option value="문구/서적">문구/서적</option>
@@ -59,7 +59,7 @@
         <input type="number" id="goodsPrice" name="goodsPrice"
         placeholder="판매 금액 입력" min="0" maxlength="7" required><p class="won">원</p>
         <hr><br>
-        <label for "addr" style="position: relative; left: 25px;">지역</label>
+        <label for = "goodsCity" style="position: relative; left: 25px;">지역</label>
             <select id="goodsCity">
                 <option value="1">서울시</option>
                 <option value="2">경기도</option>
@@ -73,7 +73,7 @@
                 <option value="1">시/도 선택에 따라서 옵션 달라짐</option>
             </select>
         <hr><br>
-        <label style="position: relative; left: -5px;">상품 상태</label>
+        <label for="goodsRange" style="position: relative; left: -5px;">상품 상태</label>
         <input type="range" min="0" max="5" value="0" step="0.5" list="tickmarks" id="goodsRange">
         <datalist id="tickmarks">
             <option value="0">매우 나쁨</option>
