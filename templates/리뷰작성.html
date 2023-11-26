@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="review.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='review.css') }}">
 </head>
 <div class="navbar">
     <ul>
@@ -17,7 +17,7 @@
     </ul>
 </div>
 <div class="divImg">
-    <form method="post" enctype="multipart/form-data">
+    <form action="/reg_review" method="post" enctype="multipart/form-data">
         <div class="button">
             <label class="imgLabel" for="chooseFile">
                 <div class="formImg">
@@ -26,6 +26,7 @@
             </label>
         </div>
         <input type="file" id="chooseFile" name="chooseFile" accept="image/*" onchange="loadFile(this)">
+        <input type="submit" id="submitReviewButton" value="리뷰 등록">
     </form>
     <svg width="450" height="590">
         <circle cx="296" cy="520" r="9"></circle>
@@ -37,7 +38,7 @@
 </div>
 
 <div class="divForm">
-    <form method="post" id="myform">
+    <form name = "myform" id = "myform" action="/reg_review" method="post" enctype="multipart/form-data">
         <label>리뷰 제목</label>
         <input type="text" id="reviewTitle" name="reviewTitle" style="position: relative; left: 45px;"
         placeholder="(최대 20자 입력 가능합니다)" maxlength="20" size="20" required class="inputText">
@@ -48,12 +49,14 @@
             placeholder="(최대 20자 입력 가능합니다)" maxlength="20" size="20" required class="inputText">
         </div>
         <hr><br>
-        <label style="position: relative; left: 15px;">상품명</label>
-        <select id="reviewGoods" class="inputSelect">
+        <label style="position: relative; left: 15px;">상품</label>
+        <!--select id="reviewGoods" name="name" class="inputSelect">
             <option value="상품1">상품1</option>
             <option value="상품2">상품2</option>
             <option value="상품3">상품3</option>
-        </select>
+        </select-->
+        <input type="text" name="name" id="name" value="{{ name }}" style="position: relative;" maxlength="20" size="20" readonly class="inputText"><br><br>
+
         <hr><br>
         <div class="divFormGender">
             <label style="position: relative; left: 4px;">성별</label>
@@ -89,9 +92,10 @@
             <input type="radio" name="reviewStar" value="1" id="rate5">
             <label for="rate5" class="star">★</label>
         </fieldset>
-        <textarea name="reviewText" cols="50" rows="10" id="reviewText" 
+        <textarea name="reviewContents" cols="50" rows="10" id="reviewTexts" 
         placeholder="상품 리뷰를 입력해주세요. (최대 500자 입력 가능합니다)" maxlength="500" required></textarea>
         <input type="submit" id="reviewSubmit" value="리뷰 등록">
+        
     </form>
 </div>
 </html>
