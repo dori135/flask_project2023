@@ -78,3 +78,18 @@ class DBhandler:
         }
         self.db.child("review").child(data['name']).set(review_info)
         return True
+
+    def get_reviews(self):
+        reviews = self.db.child("review").get().val()
+        return reviews
+    
+    
+    def get_review_by_name(self, review_name):
+        reviews = self.db.child("review").order_by_child('name').equal_to(review_name).get()
+            # 이름으로 리뷰를 찾아 반환
+        if reviews.each():
+            return reviews.val()
+        else:
+            return None
+    
+    
