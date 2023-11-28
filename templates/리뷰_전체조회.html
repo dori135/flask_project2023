@@ -72,6 +72,22 @@
     <input type="button" value="추천순" id="sort" class="first">
     <input type="button" value="최신순" id="sort" class="second">
     <input type="button" value="평점 높은 순" id="sort" class="third">
+    <table>
+        <tr>
+        {% for key, value in row1 %}
+            <td onclick="location.href='/view_review_detail/{{key}}';" style="cursor: pointer;">
+                <img src="static/images/{{value.img_path}}", width=200, height=165>
+            </td>
+        {% endfor %}
+        </tr>
+        <tr>
+        {% for key, value in row1 %}
+            <td>{{value.title}}</td>
+        {% endfor %}
+        </tr>
+    </table>
+    
+    <!--
     <a href="각리뷰">
         <img src="img.jpg">
     </a>
@@ -90,6 +106,9 @@
     <a href="각리뷰">
         <img src="img.jpg">
     </a>
+    
+
+
     <div class="div1">
         <p class="title">리뷰 제목</p>
         <p class="option">상품명(옵션)</p>
@@ -131,6 +150,17 @@
     <div class="star-ratings-fill">
         <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
     </div>
+</div>-->
 </div>
-<pre style="position: relative; bottom: -100px; left: 60px;">  << < 1   2   3   4   5   6   7 > >>  </pre>
+<div class="page-wrap">
+    <div class="page-nation">
+        <ul>
+            <li>
+            {% for i in range(page_count) %}
+                <a href="{{url_for('view_review', page=i)}}" color="black">{{i}}</a>
+            {% endfor %}
+            </li>
+        </ul>
+    </div>
+</div>
 </html>
