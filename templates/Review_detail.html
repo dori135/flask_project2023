@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+
+{% block section %}
+<p>
+<b>{{data.title}}</b><br><br>
+상품명: {{name}} <br>
+별점은 5점 만점
+{% if data['rate'] == "1" %}
+1
+{% endif %}
+{% if data['rate'] == "2" %}
+2
+{% endif %}
+{% if data['rate'] == "3" %}
+3
+{% endif %}
+{% if data['rate'] == "4" %}
+4
+{% endif %}
+{% if data['rate'] == "5" %}
+5
+{% endif %}
+점입니다.
+</p>
+<p>
+상품 리뷰: {{data.review}} <br>
+</p>
+상품 대표 이미지<br>
+<img src="../../static/images/{{data.img_path}}", width=140, height=200>
+
+{% endblock section %}
