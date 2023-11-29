@@ -4,7 +4,8 @@
 <head>
 <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Sansation+Light&display=swap" rel="stylesheet" />
-<link href="main.css" rel="stylesheet" />
+<!--link href="main.css" rel="stylesheet" /-->
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
 
 <title>Document</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -124,6 +125,7 @@ function unlike(){
 </span>
 
 <a href="#" class="REVIEWButton">REVIEW</a>
+<button onclick="location.href='/reg_review_init/{{name}}/';">리뷰등록</button>
 
 <div class="name"></div>
 
