@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 from database import DBhandler
 import hashlib
+from flask import jsonify
 import sys
 
 application = Flask(__name__)
@@ -9,10 +10,12 @@ application.config["SECRET_KEY"] = "helloosp"
 
 DB = DBhandler()
 
+
 @application.route("/")
 def hello():
     # return render_template("index.html")
     return redirect(url_for('view_list'))
+
 
 @application.route("/list")
 def view_list():
@@ -44,17 +47,60 @@ def view_list():
         page_count=int((item_counts/per_page)+1),
         total=item_counts)
 
+
 @application.route("/review")
-def view_review():
-    return render_template("review.html")
+def review_page():
+    return redirect(url_for('view_review'))
+
 
 @application.route("/reg_items")
 def reg_item():
     return render_template("reg_items.html")
 
-@application.route("/reg_reviews")
+
+@application.route("/view_review")
+def view_review():
+    page = request.args.get("page", 0, type=int)
+    per_page = 6
+    per_row = 3
+    row_count = int(per_page/per_row)
+    start_idx = per_page*page
+    end_idx = per_page*(page+1)
+    data = DB.get_reviews()
+    item_counts = len(data)
+    print("#######item count:", item_counts)
+    data = dict(list(data.items())[start_idx:end_idx])
+    tot_count = len(data)
+    for i in range(row_count):
+        if (i == row_count-1) and (tot_count % per_row != 0):
+            locals()['data_{}'.format(i)] = dict(list(data.items())
+                                                 [i*per_row:])
+        else:
+            locals()['data_{}'.format(i)] = dict(list(data.items())
+                                                 [i*per_row:(i+1)*per_row])
+    return render_template(
+        "review.html",
+        datas=data.items(),
+        row1=locals()['data_0'].items(),
+        row2=locals()['data_1'].items(),
+        limit=per_page,
+        page=page,
+        page_count=int((item_counts/per_page)+1),
+        total=item_counts)
+
+
+@application.route("/reg_review_init/<name>/", methods=['GET', 'POST'])
+def reg_review_init(name):
+    return render_template("reg_reviews.html", name=name)
+
+
+@application.route("/reg_review", methods=['POST'])
 def reg_review():
-    return render_template("reg_reviews.html")
+    image_file = request.files["file"]
+    image_file.save("static/images/{}".format(image_file.filename))
+    data = request.form
+    DB.reg_review(data['name'], data, image_file.filename)
+    return redirect(url_for('view_review'))
 
 
 @application.route("/submit_item")
@@ -70,6 +116,7 @@ def reg_item_submit():
     print(name, seller, addr, money, category, status, intro)
     #return render_template("reg_item.html")
 
+
 @application.route("/submit_item_post", methods=['POST'])
 def reg_item_submit_post():
     image_file = request.files["file"]
@@ -78,6 +125,14 @@ def reg_item_submit_post():
     DB.insert_item(data['name'], data, image_file.filename)
     return render_template("submit_item_result.html", data=data, img_path=
                            "static/images/{}".format(image_file.filename))
+
+
+@application.route("/view_review_detail/<name>/")
+def view_review_detail(name):
+    print("###name:", name)
+    data = DB.get_review_byname(str(name))
+    print("####data:", data)
+    return render_template("Review_detail.html", name=name, data=data)
 
 
 @application.route("/login")
@@ -128,6 +183,21 @@ def view_item_detail(name):
     print("####data:", data)
     return render_template("detail.html", name=name, data=data)
 
+@application.route('/show_heart/<name>/', methods=['GET'])
+def show_heart(name):
+    my_heart = DB.get_heart_byname(session['id'],name)
+    return jsonify({'my_heart': my_heart})
+ 
+@application.route('/like/<name>/', methods=['POST'])
+def like(name):
+    my_heart = DB.update_heart(session['id'],'Y',name)
+    return jsonify({'msg': '좋아요 완료!'})
+
+@application.route('/unlike/<name>/', methods=['POST'])
+
+def unlike(name):
+    my_heart = DB.update_heart(session['id'],'N',name)
+    return jsonify({'msg': '안좋아요 완료!'})
 
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
