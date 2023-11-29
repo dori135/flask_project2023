@@ -10,66 +10,74 @@
 <title>Document</title>
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+    function showHeart() {
+        $.ajax({
+            type: 'GET',
+            url: '/show_heart/{{name}}/',
+            data: {},
+            success: function (response) {
+                let my_heart = response['my_heart'];
+                let interested = my_heart['interested'];
+                let interested_cnt = my_heart['interested_cnt'];
 
-function showHeart() {
- 	$.ajax({
- 		type: 'GET',
- 		url: './getHeart.json', // /show_heart/{{name}} 
- 		data: {},
- 		success: function (response){
- 			let my_heart = response['my_heart'];
-			let interested=my_heart['interested']
-			let interested_cnt=my_heart['interested_cnt']
- 			
-			$("#jcnt").text(interested_cnt); //찜갯수
+                $("#jcnt").text(interested_cnt); // Update the like count
 
-			if (interested == 'Y'){
- 				$(".heartButton").css("background-color","red");
- 				$("#heartButton").attr("onclick","unlike()");
-			}else{
-	 			$(".heartButton").css("background-color","grey");
- 				$("#heartButton").attr("onclick","like()");
-			}
- 			//alert("showheart!")
- 
-		}
- 	});
-}
+                if (interested === 'Y') {
+                    $(".heartButton").css("background-color", "red");
+                    $("#heartButton").attr("onclick", "unlike()");
+                } else {
+                    $(".heartButton").css("background-color", "grey");
+                    $("#heartButton").attr("onclick", "like()");
+                }
+            }
+        });
+    }
 
- $(document).ready(function () {
-	//showHeart();
-	init();
+    function like() {
+        $.ajax({
+            type: 'POST',
+            url: '/like/{{name}}/',
+            data: {
+                interested: "Y"
+            },
+            success: function (response) {
+                $(".heartButton").css("background-color", "red");
+                $("#heartButton").attr("onclick", "unlike()");
+                var jcnt = Number($("#jcnt").text());
+                $("#jcnt").text(jcnt + 1);
+                alert(response['msg']);
+            }
+        });
+    }
 
- });
-function init(){
-	$("#jcnt").text("10"); //찜갯수
- 	if (true){
- 		$(".heartButton").css("background-color","red");
- 		$("#heartButton").attr("onclick","unlike()");
-	}else{
-	 	$(".heartButton").css("background-color","grey");
- 		$("#heartButton").attr("onclick","like()");
-	}
-}
-function like(){
-	$(".heartButton").css("background-color","red");
-	$("#heartButton").attr("onclick","unlike()");
-	var jcnt=Number($("#jcnt").text());
-	$("#jcnt").text(jcnt+1);
-}
+    function unlike() {
+        if ("{{ session.get('id') }}" !== "") {
+            $.ajax({
+                type: 'POST',
+                url: '/unlike/{{name}}/',
+                data: {
+                    interested: "N"
+                },
+                success: function (response) {
+                    alert(response['msg']);
+                    $(".heartButton").css("background-color", "grey");
+                    $("#heartButton").attr("onclick", "like()");
+                    var jcnt = Number($("#jcnt").text());
+                    if (jcnt > 0) {
+                        $("#jcnt").text(jcnt - 1);
+                    }
+                }
+            });
+        } else {
+            alert("Please log in to unlike the item.");
+        }
+    }
 
-function unlike(){
-	$(".heartButton").css("background-color","grey");
-	$("#heartButton").attr("onclick","like()");
-	var jcnt=Number($("#jcnt").text());
-	if(jcnt>0){
-		$("#jcnt").text(jcnt-1);
-	}
-}
-
-
-
+    $(document).ready(function () {
+        showHeart();
+    });
 </script>
+    
 </head>
 
 <body>
