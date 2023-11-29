@@ -93,7 +93,7 @@ class DBhandler:
             return reviews.val()
         else:
             return None
-     def get_heart_byname(self, uid, name):
+    def get_heart_byname(self, uid, name):
         hearts = self.db.child("heart").child(uid).get()
         target_value=""
         if hearts.val() == None:
