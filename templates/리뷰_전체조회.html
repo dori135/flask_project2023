@@ -155,11 +155,14 @@
 <div class="page-wrap">
     <div class="page-nation">
         <ul>
-            <li>
-            {% for i in range(page_count) %}
-                <a href="{{url_for('view_review', page=i)}}" color="black">{{i}}</a>
-            {% endfor %}
-            </li>
+            {% if page_count is defined %}
+                {% for i in range(page_count) %}
+                    <li><a href="{{ url_for('view_review', page=i) }}">{{ i }}</a></li>
+                {% endfor %}
+            {% else %}
+                <li>No reviews available.</li>
+            {% endif %}
+
         </ul>
     </div>
 </div>

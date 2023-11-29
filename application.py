@@ -108,8 +108,9 @@ def view_review():
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:])
         else:
             locals()['data_{}'.format(i)] = dict(list(data.items())[i*per_row:(i+1)*per_row])
+    
     return render_template(
-        "review.html",
+        "리뷰_전체조회.html",
         datas=data.items(),
         row1=locals()['data_0'].items(),
         row2=locals()['data_1'].items(),
@@ -129,8 +130,19 @@ def reg_review_init(name):
                                                                         
 @application.route("/reg_review", methods=['POST'])
 def reg_review():
-    data = request.form
-    DB.reg_review(data)
+    try:
+        image_file = request.files["chooseFile"]
+        image_path = "static/images/{}".format(image_file.filename)
+        print("이미지 경로:", image_path)
+
+        image_file.save("static/images/{}".format(image_file.filename))
+        data = request.form
+        print("Review data:", data)
+        DB.reg_review(data, image_path)
+    except Exception as e:
+        print("Error:", str(e))
+        return str(e)
+
     return render_template("리뷰_전체조회.html")
 
 @application.route("/submit_item", methods=['POST'])
