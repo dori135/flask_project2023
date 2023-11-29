@@ -84,48 +84,67 @@
 
 
 
-<div class="v3_870">
-	<div class="v38_275"></div>
-	<div class="v5_1562">
-		<span class="상품명">이화 곰돌이 키링</span>
-		<span class="가격">15000 원</span>
-		<span class="상품소개">최고 귀여운 곰돌이 키링
-대동제 32번 부스에서도 판매합니다</span>
-		<span class="판매자">판매자             송충이 상점</span>
-		<span class="지역">지역             서울시/서대문구</span>
-		<span class="상품상태">상품 상태</span>
-	<div class="name"></div>
-</div>
-
-<div class="이미지바">
-	<div class="v5_1564"></div>
-	<div class="v5_1565"></div>
-	<div class="v5_1566"></div>
-	<div class="v5_1567"></div>
-	<div class="v5_1568"></div>
-</div>
-
-<div class="button-container">
-    <a href="#" class="customButton" name="buynow">Buy Now</a>
-    <a href="#" class="customButton" name="addtocart">Add to Cart</a>
-</div>
-
-
-</div>
-<div class="name"></div>
-<div class="v5_1575">
-<div class="v5_1576">
-<div class="v5_1577">
-<div class="v5_1578">
-<div class="v5_1579"></div>
-<div class="v5_1580">
-<a href="#" class="상점바로가기">송충이 상점                                       바로가기</a>
-</div>
-</div>
-</div>
-<span class="상점소개">송충이 상점 한 줄 소개</span>
-</div>
-</div>
+    <div class="v3_870">
+        <div class="v38_275"></div>
+        <div class="v5_1562">
+            <span class="상품명">{{name}}</span>
+            <span class="가격">{{data.money}} 원</span>
+            <span class="상품소개">{{data.intro}}</span>
+            <span class="판매자">판매자             {{data.seller}}</span>
+            <span class="지역">지역             {{data.addr}}</span>
+            <span class="상품상태">
+                {% if data['status'] == "1" %}
+                1점
+                {% endif %}
+                {% if data['status'] == "2" %}
+                2점
+                {% endif %}
+                {% if data['status'] == "3" %}
+                3점
+                {% endif %}
+                {% if data['status'] == "4" %}
+                4점
+                {% endif %}
+                {% if data['status'] == "5" %}
+                5점
+                {% endif %}
+            </span>
+        <div class="name"></div>
+    </div>
+    <div class="image-container">
+        <img src="{{ data.img_path }}" alt="Product Image">
+        <img src="../../{{ data.img_path }}" width="140" height="200" alt="Product Image">
+    
+    
+    </div>
+    
+    <div class="이미지바">
+        <div class="v5_1564"></div>
+        <div class="v5_1565"></div>
+        <div class="v5_1566"></div>
+        <div class="v5_1567"></div>
+        <div class="v5_1568"></div-->
+    </td>
+    </div>
+    <div class="button-container">
+        <a href="#" class="customButton" name="buynow">Buy Now</a>
+        <a href="#" class="customButton" name="addtocart">Add to Cart</a>
+    </div>
+    </div>
+    <div class="name"></div>
+    <div class="v5_1575">
+    <div class="v5_1576">
+    <div class="v5_1577">
+    <div class="v5_1578">
+    <div class="v5_1579"></div>
+    <div class="v5_1580">
+    <a href="#" class="상점바로가기">송충이 상점                                       바로가기</a>
+    </div>
+    </div>
+    </div>
+    <span class="상점소개">송충이 상점 한 줄 소개</span>
+    </div>
+    </div>
 <span class="상품찜">찜 <span id="jcnt">15</span>
  	<button class="heartButton"  id="heartButton">
  		 <span class="heartIcon"></span>
