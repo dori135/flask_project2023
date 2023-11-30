@@ -80,6 +80,10 @@ def view_list():
         page_count=int((item_counts/per_page)+1),
         total=item_counts)
 
+@application.route('/main_page')
+def main_page():
+    return render_template('main_first.html')
+
 @application.route('/review')
 def review_page():
     return render_template('리뷰작성.html')

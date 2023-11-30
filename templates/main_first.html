@@ -1,7 +1,7 @@
 <html>
-          <head>
+        <head>
             <title>main_first</title>
-            <link rel="stylesheet" href="main_first.css">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main_first.css') }}">
 
     <script>
         function changeColor(index) {
@@ -10,9 +10,9 @@
             items[index].classList.add('active');
         }
     </script>
-          </head>
+        </head>
 
-          <body>
+        <body>
             <div class=e83_680>
 
 		<span  class="e84_14">이화상점</span>
@@ -48,7 +48,7 @@
 
 
 
-		<div class=e86_291>
+		<div class="e86_291">
 			<div class=product1>
 				<div  class="image1"></div>
 				<span  class="num1">구매 150    마켓찜 35 </span>
@@ -82,5 +82,5 @@
 				<span  class="p1">배지 상점 바로가기</span>
 				<div  class="배지이미지"></div>
 			</div>
-          </body>
-          </html>
+        </body>
+    </html>
