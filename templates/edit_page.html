@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>마켓 정보 입력</title>
+<link href="./edit_page.css" rel="stylesheet" />
+</head>
+<body>
+
+<div class="navbar">
+    <ul>
+        {% if session['id'] %}
+        <li><a href="/logout"><b>{{session['id']}}님 반갑습니다!</b> logout</a></li> {% else %}
+        <li><a href="/login">로그인</a></li>
+        {% endif %}
+        <li><a href="/">판매상품</a></li>
+        <li><a href="/certification">이화인증</a></li>
+        <li><a href="/my_page">마이페이지</a></li>
+        <li><a href="#">장바구니</a></li>
+    </ul>
+</div>
+
+    <div id="marketInfo">
+        <div id="profileImageContainer">
+            <img id="profileImage" src="default-profile-image.jpg" alt="프로필 사진">
+        </div>
+
+        <div id="backgroundImageContainer">
+            <img id="backgroundImage" src="default-background-image.jpg" alt="배경 사진">
+        </div>
+
+        <div id="leftPanel">
+            <h2>마켓 정보</h2>
+
+            <label for="marketName">마켓 이름:</label>
+            <input type="text" id="marketName" name="marketName" required>
+
+            <label for="marketIntro">마켓 소개:</label>
+            <textarea id="marketIntro" name="marketIntro" rows="4" required></textarea>
+        </div>
+
+        <div id="rightPanel">
+            <h2>마켓 공지</h2>
+
+            <label for="marketNotice">마켓 공지:</label>
+            <textarea id="marketNotice" name="marketNotice" rows="8" required></textarea>
+
+            <!-- 파일 업로드 input -->
+            <label for="profileImageInput">프로필 사진 업로드:</label>
+            <input type="file" id="profileImageInput" accept="image/*" onchange="updateImage('profileImage')">
+
+            <label for="backgroundColorInput">배경 색상:</label>
+            <input type="color" id="backgroundColorInput" onchange="changeBackgroundColor()">
+
+            <button id="submitBtn" onclick="submitForm()">제출</button>
+        </div>
+    </div>
+
+    <script>
+        function submitForm() {
+            // 여기에서 필요한 작업 수행
+            alert("폼이 제출되었습니다!");
+        }
+
+        function updateImage(imageId) {
+            var input = document.getElementById(imageId + 'Input');
+            var image = document.getElementById(imageId);
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    image.src = e.target.result;
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function changeBackgroundColor() {
+            var backgroundColorInput = document.getElementById('backgroundColorInput');
+            document.body.style.backgroundColor = backgroundColorInput.value;
+        }
+    </script>
+
+</body>
+</html>
