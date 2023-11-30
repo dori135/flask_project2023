@@ -92,6 +92,10 @@ def review_page():
 def view_certification():
     return render_template("이화인인증.html")
 
+@application.route("/badge")
+def badge():
+    return render_template("배지안내.html")
+
 @application.route("/reg_items")
 def reg_item():
     return render_template("상품등록.html")
