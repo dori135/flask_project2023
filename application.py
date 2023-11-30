@@ -196,6 +196,14 @@ def reg_item_submit_post():
 def signup_page():
     return render_template('회원가입.html')
 
+@application.route('/my_page')
+def my_page():
+    return render_template('마이페이지(마켓찜 보기).html')
+
+@application.route('/my_page2')
+def my_page2():
+    return render_template('마이페이지(상품찜 보기).html')
+
 @application.route("/view_detail/<name>/")
 def view_item_detail(name):
     print("###name:", name)
